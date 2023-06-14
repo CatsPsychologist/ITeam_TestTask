@@ -1,12 +1,20 @@
-<div class="watch">
-  <span>{{h}} : </span>
-  <span>{{m}} : </span>
-  <span>{{s}} </span>
+<div class="task">
+  <div class="container">
+    <div class="task_wrapper">
+      <div class="timer">
+        <span class="time">{{h}} : </span>
+        <span class="time">{{m}} : </span>
+        <span class="time">{{s}} </span>
+      </div>
+      <div class="btn_container">
+        <button class="btn" (click)="startTimer()">{{start ? 'stop' : 'start'}}</button>
+        <button class="btn" (click)="reset()" [disabled]="!start">reset</button>
+        <button class="btn" (click.double)="wait()" (click)="stopWait()" [disabled]="!start">{{waiting ? 'start' : 'wait'}}</button>
+      </div>
+    </div>
+  </div>
 </div>
-<div class="btn_container">
-  <button (click)="startTimer()">{{start ? 'stop' : 'start'}}</button>
-  <button (click)="reset()" [disabled]="!start">reset</button>
-  <button (click.double)="wait()" (click)="stopWait()" [disabled]="!start">{{waiting ? 'start' : 'wait'}}</button>
-</div>
+
+
 
 
