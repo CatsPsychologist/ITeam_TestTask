@@ -1,5 +1,5 @@
 import {Directive, EventEmitter, HostListener, Input, Output} from '@angular/core';
-import {debounceTime, Subject, Subscription} from "rxjs";
+import {debounceTime, filter, Subject, Subscription} from "rxjs";
 
 @Directive({
   selector: '[click.single],[click.double]',
@@ -15,12 +15,23 @@ export class DbClickDirective {
   constructor() {}
 
   ngOnInit() {
-    this.subscription = this.clicksSubject.pipe(debounceTime(this.debounceTime)).subscribe(event => {
+    this.subscription =
+      this.clicksSubject.pipe(
+        debounceTime(this.debounceTime))
+        .subscribe(event => {
       if (event.type === 'dblclick') {
         this.doubleClick.emit(event);
       }
     });
   }
+
+  // tried to make code prettier
+  // ngOnInit() {
+  //   this.subscription = this.clicksSubject.pipe(
+  //     debounceTime(this.debounceTime),
+  //     filter(event => event.type === 'dblclick')
+  //   ).subscribe(this.doubleClick.emit);
+  // }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();

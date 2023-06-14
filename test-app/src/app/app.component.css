@@ -64,6 +64,8 @@
 .btn:disabled{
   color: white;
   background: #ffc3c3;
+
+  cursor: default;
 }
 @media (max-width: 567px) {
   .task_wrapper{
